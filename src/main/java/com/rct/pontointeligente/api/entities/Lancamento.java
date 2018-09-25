@@ -24,7 +24,7 @@ import com.rct.pontointeligente.api.enums.TipoEnum;
 @Table(name = "lancamento")
 public class Lancamento implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 6524560251526772839L;
 
 	private Long id;
 	private Date data;
@@ -34,6 +34,9 @@ public class Lancamento implements Serializable {
 	private Date dataAtualizacao;
 	private TipoEnum tipo;
 	private Funcionario funcionario;
+
+	public Lancamento() {
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -55,7 +58,7 @@ public class Lancamento implements Serializable {
 		this.data = data;
 	}
 
-	@Column(name = "descricao", nullable = false)
+	@Column(name = "descricao", nullable = true)
 	public String getDescricao() {
 		return descricao;
 	}
@@ -64,7 +67,7 @@ public class Lancamento implements Serializable {
 		this.descricao = descricao;
 	}
 
-	@Column(name = "localizacao", nullable = false)
+	@Column(name = "localizacao", nullable = true)
 	public String getLocalizacao() {
 		return localizacao;
 	}
@@ -112,14 +115,14 @@ public class Lancamento implements Serializable {
 
 	@PreUpdate
 	public void preUpdate() {
-		this.dataAtualizacao = new Date();
+		dataAtualizacao = new Date();
 	}
 
 	@PrePersist
 	public void prePersist() {
 		final Date atual = new Date();
-		this.dataCriacao = atual;
-		this.dataAtualizacao = atual;
+		dataCriacao = atual;
+		dataAtualizacao = atual;
 	}
 
 	@Override

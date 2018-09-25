@@ -28,7 +28,7 @@ import com.rct.pontointeligente.api.enums.PerfilEnum;
 @Table(name = "funcionario")
 public class Funcionario implements Serializable {
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5754246207015712518L;
 
 	private Long id;
 	private String nome;
@@ -43,6 +43,9 @@ public class Funcionario implements Serializable {
 	private Date dataAtualizacao;
 	private Empresa empresa;
 	private List<Lancamento> lancamentos;
+
+	public Funcionario() {
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -72,15 +75,6 @@ public class Funcionario implements Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "senha", nullable = false)
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
 	@Column(name = "cpf", nullable = false)
 	public String getCpf() {
 		return cpf;
@@ -90,7 +84,7 @@ public class Funcionario implements Serializable {
 		this.cpf = cpf;
 	}
 
-	@Column(name = "valor_hora", nullable = false)
+	@Column(name = "valor_hora", nullable = true)
 	public BigDecimal getValorHora() {
 		return valorHora;
 	}
@@ -104,7 +98,7 @@ public class Funcionario implements Serializable {
 		this.valorHora = valorHora;
 	}
 
-	@Column(name = "qtd_horas_trabalho_dia", nullable = false)
+	@Column(name = "qtd_horas_trabalho_dia", nullable = true)
 	public Float getQtdHorasTrabalhoDia() {
 		return qtdHorasTrabalhoDia;
 	}
@@ -118,7 +112,7 @@ public class Funcionario implements Serializable {
 		this.qtdHorasTrabalhoDia = qtdHorasTrabalhoDia;
 	}
 
-	@Column(name = "qtd_horas_almoco", nullable = false)
+	@Column(name = "qtd_horas_almoco", nullable = true)
 	public Float getQtdHorasAlmoco() {
 		return qtdHorasAlmoco;
 	}
@@ -160,6 +154,15 @@ public class Funcionario implements Serializable {
 		this.dataAtualizacao = dataAtualizacao;
 	}
 
+	@Column(name = "senha", nullable = false)
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	public Empresa getEmpresa() {
 		return empresa;
@@ -180,14 +183,14 @@ public class Funcionario implements Serializable {
 
 	@PreUpdate
 	public void preUpdate() {
-		this.dataAtualizacao = new Date();
+		dataAtualizacao = new Date();
 	}
 
 	@PrePersist
 	public void prePersist() {
 		final Date atual = new Date();
-		this.dataCriacao = atual;
-		this.dataAtualizacao = atual;
+		dataCriacao = atual;
+		dataAtualizacao = atual;
 	}
 
 	@Override
@@ -195,7 +198,7 @@ public class Funcionario implements Serializable {
 		return "Funcionario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
 				+ ", valorHora=" + valorHora + ", qtdHorasTrabalhoDia=" + qtdHorasTrabalhoDia + ", qtdHorasAlmoco="
 				+ qtdHorasAlmoco + ", perfil=" + perfil + ", dataCriacao=" + dataCriacao + ", dataAtualizacao="
-				+ dataAtualizacao + ", empresa=" + empresa + ", lancamentos=" + lancamentos + "]";
+				+ dataAtualizacao + ", empresa=" + empresa + "]";
 	}
 
 }
