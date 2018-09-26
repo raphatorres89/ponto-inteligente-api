@@ -34,7 +34,6 @@ public class FuncionarioRepositoryTest {
 	@Before
 	public void setUp() {
 		Empresa empresa = this.empresaRepository.save(obterDadosEmpresa());
-		Funcionario f = obterDadosFuncionario(empresa);
 		this.funcionarioRepository.save(obterDadosFuncionario(empresa));
 	}
 	

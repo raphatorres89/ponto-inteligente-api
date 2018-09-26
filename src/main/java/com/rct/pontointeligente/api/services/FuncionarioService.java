@@ -6,12 +6,34 @@ import com.rct.pontointeligente.api.entities.Funcionario;
 
 public interface FuncionarioService {
 
+	/**
+	 * Cadastra um novo funcionário na base de dados
+	 * 
+	 * @param funcionario
+	 * @return Funcionario
+	 */
 	Funcionario persistir(Funcionario funcionario);
 
-	Optional<Funcionario> buscarPorId(long l);
+	/**
+	 * Retorna um funcionário dado o ID
+	 * @param id
+	 * @return Optional<Funcionario>
+	 */
+	Optional<Funcionario> buscarPorId(long id);
 
-	Optional<Funcionario> buscarPorEmail(String string);
+	/**
+	 * Retorna um funcionário dado o Email
+	 * @param email
+	 * @return Optional<Funcionario>
+	 */
+	Optional<Funcionario> buscarPorEmail(String email);
 
-	Optional<Funcionario> buscarPorCpf(String string);
+	/**
+	 * Retorna um funcionário dado o Cpf
+	 * 
+	 * @param cpf
+	 * @return Optional<Funcionario>
+	 */
+	Optional<Funcionario> buscarPorCpf(String cpf);
 
 }
